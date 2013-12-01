@@ -224,7 +224,7 @@ my %TYPES = (
     # But this is where it ends, it is too
     # expensive to try and do this any more
     # recursively, when it is probably not
-    # nessecary in most of the use cases.
+    # necessary in most of the use cases.
     # However, if you need more then this, subtype
     # and add a custom handler.
     'ArrayRef' => {
@@ -308,7 +308,7 @@ sub find_type_handler {
           and not $type_constraint->parent->can('type_parameter'));
 
     # find_type_for is a method of a union type.  If we can call that method
-    # then we are dealign with a union and we need to ascertain which of
+    # then we are dealing with a union and we need to ascertain which of
     # the union's types we need to use for the value we are serializing.
     if($type_constraint->can('find_type_for')) {
         my $tc = $type_constraint->find_type_for($value);
@@ -316,7 +316,7 @@ sub find_type_handler {
     }
 
     # this should handle most type usages
-    # since they they are usually just
+    # since they are usually just
     # the standard set of built-ins
     return $TYPES{$type_constraint->name}
         if exists $TYPES{$type_constraint->name};
@@ -339,14 +339,14 @@ sub find_type_handler {
     # are mostly used for validation of
     # the guts of a type, and not for some
     # weird structural thing which would
-    # need to be accomidated by the serializer.
+    # need to be accommodated by the serializer.
     # Of course, mst or phaylon will probably
     # do something to throw this assumption
     # totally out the door ;)
     # - SL
 
     # NOTE:
-    # if this method hasnt returned by now
+    # if this method hasn't returned by now
     # then we have no been able to find a
     # type constraint handler to match
     confess "Cannot handle type constraint (" . $type_constraint->name . ")";
